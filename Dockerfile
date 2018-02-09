@@ -49,14 +49,14 @@ RUN apt-get update && \
 RUN pecl install mongodb && \
     pecl install xdebug && \
     pecl install apcu
+COPY config /
+
+RUN sh /usr/local/bin/install.sh
 
 RUN curl -s -f -L -o /tmp/installer.php https://getcomposer.org/installer \
  && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer \
  && composer --ansi --version --no-interaction \
  && rm -rf /tmp/* /tmp/.htaccess
-
-COPY config /
-RUN sh /usr/local/bin/install.sh
 WORKDIR /var/www/html
 EXPOSE 80 9001
 ENTRYPOINT bash -C '/entrypoint.sh';'bash'
