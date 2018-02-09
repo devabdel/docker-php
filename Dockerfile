@@ -51,7 +51,7 @@ RUN pecl install mongodb && \
     pecl install apcu
 
 RUN curl -s -f -L -o /tmp/installer.php https://getcomposer.org/installer \
- && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+ && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer \
  && composer --ansi --version --no-interaction \
  && rm -rf /tmp/* /tmp/.htaccess
 
